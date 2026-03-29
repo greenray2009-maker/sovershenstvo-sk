@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Совершенство СК — Медицинское оборудование</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--g-dark:#0A6B3B;--g:#0F8A4C;--g-mid:#12A05A;--g-light:#E8F5EE;--g-pale:#F2FAF5;--g-acc:#34C270;--white:#FFFFFF;--off:#F8F9F8;--g100:#F1F3F2;--g200:#E2E6E4;--g400:#9AA49F;--g600:#5A6360;--g800:#2A3330;--text:#1A2421;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--g200);box-shadow:0 2px 16px rgba(10,107,59,.06);display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:72px;}
+.nav-cross{width:38px;height:38px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+.nav-cross::before,.nav-cross::after{content:'';position:absolute;background:#fff;border-radius:2px;}
+.nav-cross::before{width:4px;height:20px;}.nav-cross::after{width:20px;height:4px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em;line-height:1.2;}
+.nav-sub{font-size:10px;font-weight:500;color:var(--g);letter-spacing:.1em;text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{color:var(--g600);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--g);}
+.nav-r{display:flex;align-items:center;gap:20px;}
+.nav-tel{font-size:14px;font-weight:600;color:var(--text);text-decoration:none;}
+.btn-nav{background:var(--g);color:#fff;padding:10px 22px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s,transform .15s;display:inline-block;}
+.btn-nav:hover{background:var(--g-dark);transform:translateY(-1px);}
+/* BURGER */
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none;}
+.burger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--white);z-index:99;padding:32px 24px;flex-direction:column;gap:0;overflow-y:auto;}
+.mob-menu.open{display:flex;}
+.mob-menu a{display:block;padding:18px 0;font-size:17px;font-weight:600;color:var(--text);text-decoration:none;border-bottom:1px solid var(--g100);}
+.mob-menu a:hover{color:var(--g);}
+.mob-tel{font-size:20px;font-weight:700;color:var(--text);text-decoration:none;padding:24px 0 16px!important;border-bottom:1px solid var(--g200)!important;}
+.mob-btn{background:var(--g)!important;color:#fff!important;padding:16px 28px!important;border-radius:8px!important;font-size:16px!important;text-align:center;margin-top:16px;border-bottom:none!important;}
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 20px;height:64px;}
+  .nav-links,.nav-r{display:none;}
+  .burger{display:flex;}
+  .hero{grid-template-columns:1fr;padding:100px 20px 60px;gap:40px;}
+  .hero::before{display:none;}
+  .hero-r{display:none;}
+  section{padding:64px 20px;}
+  .gz-grid{grid-template-columns:1fr;gap:24px;}
+  .ct-head,.ct-row{grid-template-columns:1.8fr 1fr;padding:14px 16px;}
+  .ct-th:nth-child(2),.ct-td:nth-child(2){display:none;}
+  .dir-grid{grid-template-columns:1fr 1fr;gap:14px;}
+  .sup-grid{grid-template-columns:1fr;gap:16px;}
+  .docs-grid{grid-template-columns:1fr;gap:14px;}
+  .team-grid{grid-template-columns:1fr;gap:16px;}
+  .c-grid{grid-template-columns:1fr;gap:32px;}
+  .cf-row{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .trust{padding:14px 20px;}
+  .stats{flex-wrap:wrap;gap:16px;}
+  .stat{padding:0;border-right:none;margin-right:0;width:45%;}
+  .btns{flex-direction:column;}
+  .btn-p,.btn-o{text-align:center;justify-content:center;}
+  .ct-hrow{flex-direction:column;gap:16px;align-items:flex-start;}
+  .ct-tot-n{font-size:32px;}
+  .gz-feats{display:none;}
+}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 56px 80px;gap:80px;position:relative;overflow:hidden;background:var(--white);}
+.hero::before{content:'';position:absolute;top:0;right:0;width:52%;height:100%;background:var(--g-pale);z-index:0;}
+.hero-l{position:relative;z-index:2;}
+.hero-r{position:relative;z-index:2;display:flex;flex-direction:column;gap:16px;}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--g-light);border:1px solid rgba(15,138,76,.2);border-radius:100px;padding:6px 16px 6px 10px;margin-bottom:28px;}
+.pill-dot{width:8px;height:8px;background:var(--g-acc);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
+.pill span{font-size:12px;font-weight:600;color:var(--g-dark);letter-spacing:.04em;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(38px,4.5vw,60px);font-weight:900;color:var(--text);line-height:1.08;margin-bottom:10px;letter-spacing:-.02em;}
+h1 em{font-style:normal;color:var(--g);}
+.hero-sub{font-size:clamp(18px,2vw,24px);font-weight:400;color:var(--g400);margin-bottom:28px;font-family:'Playfair Display',serif;}
+.hero-desc{font-size:16px;color:var(--g600);line-height:1.72;max-width:540px;margin-bottom:44px;}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--g);color:#fff;padding:15px 30px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+.btn-p:hover{background:var(--g-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(15,138,76,.25);}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--g);padding:15px 30px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;border:2px solid var(--g);transition:all .2s;}
+.btn-o:hover{background:var(--g-light);}
+.stats{display:flex;gap:0;}
+.stat{padding:20px 32px 20px 0;border-right:1px solid var(--g200);margin-right:32px;}
+.stat:last-child{border-right:none;margin-right:0;}
+.stat-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--g);display:block;line-height:1;margin-bottom:4px;}
+.stat-l{font-size:12px;font-weight:500;color:var(--g400);letter-spacing:.04em;line-height:1.4;}
+.hcard{background:var(--white);border:1px solid var(--g200);border-radius:16px;padding:24px 28px;box-shadow:0 4px 24px rgba(0,0,0,.05);}
+.hcard-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g400);margin-bottom:14px;}
+.hcard-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--g);}
+.hcard-sub{font-size:13px;color:var(--g600);margin-top:4px;}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.badge{display:inline-flex;align-items:center;background:var(--g-light);color:var(--g-dark);font-size:11px;font-weight:600;padding:5px 12px;border-radius:100px;letter-spacing:.04em;}
+.badge.g{background:var(--g100);color:var(--g600);}
+/* TRUST */
+.trust{background:var(--g);padding:18px 56px;display:flex;align-items:center;gap:0;overflow-x:auto;}
+.ti{display:flex;align-items:center;gap:10px;white-space:nowrap;color:rgba(255,255,255,.9);font-size:13px;font-weight:500;padding-right:40px;margin-right:40px;border-right:1px solid rgba(255,255,255,.2);flex-shrink:0;}
+.ti:last-child{border-right:none;margin-right:0;padding-right:0;}
+.tck{width:18px;height:18px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;}
+/* SECTION */
+section{padding:96px 56px;}
+.stag{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-bottom:16px;}
+.stag::before{content:'';width:28px;height:2px;background:var(--g);border-radius:1px;}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(30px,3.5vw,48px);font-weight:700;color:var(--text);line-height:1.1;margin-bottom:18px;letter-spacing:-.01em;}
+.stitle.w{color:#fff;}
+.sdesc{font-size:17px;color:var(--g600);line-height:1.7;max-width:560px;}
+.sdesc.w{color:rgba(255,255,255,.6);}
+/* GOSZAKAZ */
+.goszakaz{background:var(--off);}
+.gz-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:56px;}
+.lcard{background:var(--white);border-radius:16px;padding:36px 32px;border:1px solid var(--g200);position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s;}
+.lcard:hover{box-shadow:0 16px 48px rgba(15,138,76,.12);transform:translateY(-4px);}
+.lcard-stripe{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--g),var(--g-acc));}
+.lnum{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--g);display:block;line-height:1;margin-bottom:10px;}
+.lname{font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.lwho{font-size:13px;color:var(--g600);margin-bottom:20px;line-height:1.5;}
+.llist{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.llist li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--g800);line-height:1.5;}
+.llist li::before{content:'✓';color:var(--g);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+.gz-feats{display:flex;flex-direction:column;gap:20px;}
+.fb{background:var(--white);border:1px solid var(--g200);border-radius:12px;padding:24px 28px;border-left:3px solid var(--g);}
+.fb-t{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:10px;}
+.fb-d{font-size:14px;color:var(--g600);line-height:1.65;}
+/* CONTRACTS */
+.contracts{background:var(--g-dark);position:relative;overflow:hidden;}
+.contracts::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(255,255,255,.03) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(255,255,255,.04) 0%,transparent 40%);}
+.contracts .stag{color:rgba(255,255,255,.55);}
+.contracts .stag::before{background:rgba(255,255,255,.35);}
+.ct-hrow{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;position:relative;z-index:2;}
+.ct-tot{text-align:right;}
+.ct-tot-n{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--g-acc);display:block;line-height:1;}
+.ct-tot-l{font-size:12px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+.ct-table{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;position:relative;z-index:2;}
+.ct-head{display:grid;grid-template-columns:2.4fr 1.6fr 1fr 1fr;padding:14px 28px;background:rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.08);}
+.ct-th{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.ct-row{display:grid;grid-template-columns:2.4fr 1.6fr 1fr 1fr;padding:20px 28px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s;align-items:center;}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:rgba(255,255,255,.04);}
+.ct-td{font-size:14px;font-weight:400;color:rgba(255,255,255,.7);}
+.ct-td.main{color:#fff;font-weight:500;}
+.ct-amt{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:var(--g-acc);}
+.ct-st{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:5px 12px;border-radius:100px;letter-spacing:.04em;}
+.st-done{background:rgba(52,194,112,.15);color:#6EE7A0;border:1px solid rgba(52,194,112,.25);}
+.st-act{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15);}
+.ct-note{margin-top:20px;padding:18px 24px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;position:relative;z-index:2;}
+/* DIRECTIONS */
+.directions{background:var(--white);}
+.dir-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px;}
+.dcard{background:var(--white);border:1px solid var(--g200);border-radius:14px;padding:28px 22px;transition:all .22s;}
+.dcard:hover{border-color:var(--g);box-shadow:0 8px 32px rgba(15,138,76,.1);transform:translateY(-3px);background:var(--g-pale);}
+.dic{font-size:28px;margin-bottom:16px;display:block;}
+.dt{font-size:14px;font-weight:700;color:var(--text);margin-bottom:7px;line-height:1.3;}
+.dd{font-size:12px;color:var(--g400);line-height:1.55;margin-bottom:12px;}
+.db{font-size:11px;font-weight:600;color:var(--g);letter-spacing:.04em;}
+/* SUPPLIERS */
+.suppliers{background:var(--off);}
+.sup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;}
+.scard{background:var(--white);border:1px solid var(--g200);border-radius:14px;padding:28px;}
+.sn{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.st{display:inline-block;background:var(--g-light);color:var(--g-dark);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:14px;}
+.si{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:14px;}
+.ss{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--g);}
+.ss::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--g-acc);}
+/* DOCUMENTS */
+.documents{background:var(--g-light);}
+.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
+.docc{background:var(--white);border:1px solid var(--g200);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;transition:all .2s;}
+.docc:hover{border-color:var(--g);box-shadow:0 8px 28px rgba(15,138,76,.1);}
+.doc-ic{width:44px;height:44px;background:var(--g-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.doc-t{font-size:15px;font-weight:700;color:var(--text);}
+.doc-d{font-size:13px;color:var(--g600);line-height:1.6;flex:1;}
+.doc-l{display:inline-flex;align-items:center;gap:6px;color:var(--g);font-size:13px;font-weight:600;text-decoration:none;transition:gap .2s;}
+.doc-l:hover{gap:10px;}
+/* CONTACT */
+.contact{background:var(--white);}
+.c-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;margin-top:56px;}
+.cf{display:flex;flex-direction:column;gap:18px;}
+.cf-tabs{display:flex;border:1px solid var(--g200);border-radius:8px;overflow:hidden;}
+.cf-tab{flex:1;padding:11px 12px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;background:var(--g100);color:var(--g400);transition:all .2s;letter-spacing:.02em;}
+.cf-tab.on{background:var(--g);color:#fff;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cg{display:flex;flex-direction:column;gap:6px;}
+.cl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g600);}
+.ci{padding:12px 14px;border:1px solid var(--g200);border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;color:var(--text);background:var(--off);outline:none;transition:border-color .2s,background .2s;}
+.ci:focus{border-color:var(--g);background:var(--white);}
+.cta{resize:vertical;min-height:110px;}
+.cinfo{display:flex;flex-direction:column;gap:28px;padding-top:8px;}
+.cb{padding-bottom:28px;border-bottom:1px solid var(--g200);}
+.cb:last-child{border-bottom:none;padding-bottom:0;}
+.cbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g400);margin-bottom:8px;}
+.cbv{font-size:20px;font-weight:700;color:var(--text);display:block;text-decoration:none;transition:color .2s;}
+.cbv:hover{color:var(--g);}
+.cbs{font-size:13px;color:var(--g400);margin-top:2px;}
+.cdet{display:flex;flex-direction:column;gap:7px;}
+.cdr{display:flex;justify-content:space-between;font-size:13px;}
+.cdk{color:var(--g400);}
+.cdv{color:var(--text);font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:12px;}
+/* FOOTER */
+footer{background:var(--g800);padding:60px 56px 32px;}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:48px;}
+.ft-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.ft-cross{width:32px;height:32px;background:var(--g);border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative;}
+.ft-cross::before,.ft-cross::after{content:'';position:absolute;background:#fff;border-radius:2px;}
+.ft-cross::before{width:3px;height:16px;}.ft-cross::after{width:16px;height:3px;}
+.ft-name{font-size:14px;font-weight:700;color:#fff;}
+.ft-tag{font-size:13px;color:rgba(255,255,255,.35);line-height:1.65;max-width:260px;}
+.fct{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g-acc);margin-bottom:18px;}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.flinks a{color:rgba(255,255,255,.45);text-decoration:none;font-size:13px;transition:color .2s;}
+.flinks a:hover{color:#fff;}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);}
+.ft-copy{font-size:13px;color:rgba(255,255,255,.25);}
+.ft-leg{display:flex;gap:20px;}
+.ft-leg a{font-size:13px;color:rgba(255,255,255,.25);text-decoration:none;transition:color .2s;}
+.ft-leg a:hover{color:rgba(255,255,255,.6);}
+/* anim */
+@keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.pill{animation:up .5s ease both;}h1{animation:up .5s .1s ease both;}.hero-sub{animation:up .5s .15s ease both;}.hero-desc{animation:up .5s .2s ease both;}.btns{animation:up .5s .25s ease both;}.stats{animation:up .5s .3s ease both;}.hero-r{animation:up .6s .2s ease both;}
+
+</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-cross"></div>
+    <div><div class="nav-name">Совершенство СК</div><div class="nav-sub">Медицинское оборудование</div></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#goszakaz">44-ФЗ / 223-ФЗ</a></li>
+    <li><a href="#contracts">Контракты</a></li>
+    <li><a href="#directions">Оборудование</a></li>
+    <li><a href="#documents">Документы</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="tel:+79682680069" class="nav-tel">+7 (968) 268-00-69</a>
+    <a href="#contact" class="btn-nav">Запросить КП</a>
+  </div>
+  <button class="burger" id="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="tel:+79682680069" class="mob-tel">+7 (968) 268-00-69</a>
+  <a href="#goszakaz" onclick="closeMenu()">44-ФЗ / 223-ФЗ</a>
+  <a href="#contracts" onclick="closeMenu()">Контракты</a>
+  <a href="#directions" onclick="closeMenu()">Оборудование</a>
+  <a href="#documents" onclick="closeMenu()">Документы</a>
+  <a href="#contact" onclick="closeMenu()">Контакты</a>
+  <a href="#contact" class="mob-btn" onclick="closeMenu()">Запросить КП →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="pill"><div class="pill-dot"></div><span>Официальный дистрибьютор • 44-ФЗ • 223-ФЗ</span></div>
+    <h1>Медицинское<br><em>оборудование</em><br>и расходники</h1>
+    <p class="hero-sub">для государственных и частных ЛПУ</p>
+    <p class="hero-desc">Совершенство СК — аккредитованный поставщик для госзакупок. Поставки в ФГБУ, региональные больницы и корпоративные медцентры. Полный цикл: подбор, тендерное сопровождение, поставка, монтаж, гарантия.</p>
+    <div class="btns">
+      <a href="#contact" class="btn-p">Запросить КП для тендера →</a>
+      <a href="#contracts" class="btn-o">Наши контракты</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">350М+</span><span class="stat-l">Портфель контрактов<br>2025–2026</span></div>
+      <div class="stat"><span class="stat-n">12</span><span class="stat-l">Направлений<br>медтехники</span></div>
+      <div class="stat"><span class="stat-n">44/223</span><span class="stat-l">Работаем<br>по ФЗ</span></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hcard">
+      <div class="hcard-lbl">Ключевой заказчик 2025–2026</div>
+      <div class="hcard-val">ФГБУ Бакулева</div>
+      <div class="hcard-sub">НМИЦ ССХ им. А.Н. Бакулева, Минздрав России</div>
+      <div class="badges"><span class="badge">Кардиохирургия</span><span class="badge">Расходники</span><span class="badge">44-ФЗ</span></div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-lbl">Направления поставок</div>
+      <div class="badges" style="margin-top:0"><span class="badge">Шовный материал</span><span class="badge">Клипсы</span><span class="badge">Дренажи</span><span class="badge">Заплаты</span><span class="badge">Гемостатики</span><span class="badge g">Физиотерапия</span><span class="badge g">Реабилитация</span><span class="badge g">Электроды</span></div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-lbl">Партнёры-поставщики</div>
+      <div class="badges" style="margin-top:0"><span class="badge g">B. Braun</span><span class="badge g">J&J</span><span class="badge g">Армалайн</span><span class="badge g">Элемаар</span><span class="badge g">Репромед</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="ti"><span class="tck">✓</span>Регистрационные удостоверения Росздравнадзора</div>
+  <div class="ti"><span class="tck">✓</span>Аккредитация в ЕИС zakupki.gov.ru</div>
+  <div class="ti"><span class="tck">✓</span>НДС 10% — мед. изделия (пп.4 п.2 ст.164 НК РФ)</div>
+  <div class="ti"><span class="tck">✓</span>Поставки по всей России</div>
+  <div class="ti"><span class="tck">✓</span>Ставрополь · Москва</div>
+</div>
+
+<!-- ГОСЗАКУПКИ -->
+<section class="goszakaz" id="goszakaz">
+  <div class="stag">Государственные закупки</div>
+  <h2 class="stitle">Работаем по 44-ФЗ<br>и 223-ФЗ</h2>
+  <p class="sdesc">Полное тендерное сопровождение — от формирования ТЗ до закрывающих документов. Опыт исполнения крупных контрактов с федеральными медучреждениями.</p>
+  <div class="gz-grid">
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="lcard"><div class="lcard-stripe"></div><span class="lnum">44-ФЗ</span><div class="lname">Контрактная система в сфере закупок</div><p class="lwho">Государственные и муниципальные заказчики: ФГБУ, федеральные медцентры, региональные больницы.</p><ul class="llist"><li>Электронные аукционы и котировки на ЕИС</li><li>Закупки у единственного поставщика до 600 тыс. ₽</li><li>Помощь в формировании ТЗ с ОКПД2 и классом риска</li><li>Типовой контракт Минздрава (Приказ №724н)</li><li>Нацрежим 2025: подбор по ГИСП и ПП №102</li></ul></div>
+      <div class="lcard"><div class="lcard-stripe"></div><span class="lnum">223-ФЗ</span><div class="lname">Закупки отдельными видами юридических лиц</div><p class="lwho">Частные клиники, корпоративная медицина: РЖД, Газпром, Лукойл, федеральные медсети.</p><ul class="llist"><li>Работа по положению о закупках заказчика</li><li>Гибкие условия оплаты и поставки</li><li>Индивидуальные коммерческие предложения</li><li>Подтверждение страны происхождения (ГИСП)</li><li>Сервисные и гарантийные обязательства</li></ul></div>
+    </div>
+    <div class="gz-feats">
+      <div class="fb"><div class="fb-t">🏆 Ключевой партнёр</div><p class="fb-d"><strong>ФГБУ «НМИЦ ССХ им. А.Н. Бакулева»</strong> — крупнейший кардиохирургический центр России. Осуществляем поставки расходных материалов для кардиохирургии и реанимации в рамках долгосрочного партнёрства.</p></div>
+      <div class="fb"><div class="fb-t">📋 Нацрежим 2025</div><p class="fb-d">С 2025 года заказчики обязаны детализировать в ТЗ класс риска изделий и условия сертификации. Мы берём на себя формирование корректной документации и подбор зарегистрированных изделий из реестра Росздравнадзора.</p></div>
+      <div class="fb"><div class="fb-t">💰 Финансовые условия</div><p class="fb-d">НДС 10% по медизделиям (пп.4 п.2 ст.164 НК РФ). Полный комплект закрывающих документов: УПД, акты, накладные, регистрационные удостоверения. Коммерческие условия обсуждаются индивидуально.</p></div>
+      <div class="fb"><div class="fb-t">🚚 Логистика</div><p class="fb-d">Собственный логистический оператор. Поставки из Москвы в любой регион России. Срочная доставка из наличия — от 5 рабочих дней.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRACTS -->
+<section class="contracts" id="contracts">
+  <div class="ct-hrow">
+    <div>
+      <div class="stag">Прозрачность</div>
+      <h2 class="stitle w">Опыт исполнения<br>государственных контрактов</h2>
+      <p class="sdesc w">Верифицировано через ЕИС. Документы предоставляются по запросу.</p>
+    </div>
+    <div class="ct-tot"><span class="ct-tot-n">350М+ ₽</span><div class="ct-tot-l">Портфель контрактов 2025–2026</div></div>
+  </div>
+  <div class="ct-table">
+    <div class="ct-head"><div class="ct-th">Категория поставки</div><div class="ct-th">Тип заказчика</div><div class="ct-th">Объём</div><div class="ct-th">Статус</div></div>
+    <div class="ct-row"><div class="ct-td main">Расходные материалы для кардиохирургии — шовный материал, клипсы (полный ассортимент)</div><div class="ct-td">ФГБУ, Минздрав РФ</div><div class="ct-td ct-amt">свыше 200 млн ₽</div><div class="ct-td"><span class="ct-st st-act">● Активный</span></div></div>
+    <div class="ct-row"><div class="ct-td main">Сердечно-сосудистые заплаты синтетические, хирургические</div><div class="ct-td">ФГБУ, Минздрав РФ</div><div class="ct-td ct-amt">свыше 15 млн ₽</div><div class="ct-td"><span class="ct-st st-act">● Активный</span></div></div>
+    <div class="ct-row"><div class="ct-td main">Дренажные системы для закрытых ран</div><div class="ct-td">ФГБУ, Минздрав РФ</div><div class="ct-td ct-amt">свыше 20 млн ₽</div><div class="ct-td"><span class="ct-st st-act">● Активный</span></div></div>
+    <div class="ct-row"><div class="ct-td main">Электроды для кардиостимуляции</div><div class="ct-td">Медучреждения по 44-ФЗ</div><div class="ct-td ct-amt">свыше 7 млн ₽</div><div class="ct-td"><span class="ct-st st-done">✓ Исполнено</span></div></div>
+    <div class="ct-row"><div class="ct-td main">Гемостатические материалы и воск костный</div><div class="ct-td">ФГБУ, Минздрав РФ</div><div class="ct-td ct-amt">свыше 3 млн ₽</div><div class="ct-td"><span class="ct-st st-done">✓ Исполнено</span></div></div>
+    <div class="ct-row"><div class="ct-td main">Физиотерапевтическое и реабилитационное оборудование</div><div class="ct-td">Медучреждения по 44-ФЗ</div><div class="ct-td ct-amt">свыше 2 млн ₽</div><div class="ct-td"><span class="ct-st st-done">✓ Исполнено</span></div></div>
+  </div>
+  <div class="ct-note">ℹ️ Совершенство СК — участник государственных закупок по 44-ФЗ с портфелем контрактов свыше <strong>350 млн ₽</strong> в 2025–2026 годах. Данные верифицируются через ЕИС (zakupki.gov.ru). Реестровая информация предоставляется по запросу.</div>
+</section>
+
+<!-- DIRECTIONS -->
+<section class="directions" id="directions">
+  <div class="stag">Каталог</div>
+  <h2 class="stitle">12 направлений<br>медицинской техники</h2>
+  <p class="sdesc">Комплексное оснащение ЛПУ. Все изделия зарегистрированы в реестре Росздравнадзора.</p>
+  <div class="dir-grid">
+    <div class="dcard"><span class="dic">🔬</span><div class="dt">Лучевая диагностика</div><p class="dd">МРТ, КТ, рентгеновские системы.</p><div class="db">GE · Siemens · Гелпик</div></div>
+    <div class="dcard"><span class="dic">📡</span><div class="dt">УЗИ-диагностика</div><p class="dd">Ультразвуковые системы всех классов.</p><div class="db">GE · Philips · Mindray</div></div>
+    <div class="dcard"><span class="dic">🩺</span><div class="dt">Эндоскопия</div><p class="dd">Эндоскопические комплексы и расходники.</p><div class="db">Karl Storz · Olympus</div></div>
+    <div class="dcard"><span class="dic">🫀</span><div class="dt">Анестезиология и реанимация</div><p class="dd">ИВЛ, наркозные аппараты, мониторинг.</p><div class="db">GE · Draeger · Mindray</div></div>
+    <div class="dcard"><span class="dic">🔪</span><div class="dt">Хирургия</div><p class="dd">Шовный материал, клипсы, дренажи, гемостатики.</p><div class="db">B.Braun · J&J · Медика</div></div>
+    <div class="dcard"><span class="dic">👶</span><div class="dt">Акушерство и неонатология</div><p class="dd">Оборудование для родовспоможения.</p><div class="db">УОМЗ · GE · Медин</div></div>
+    <div class="dcard"><span class="dic">⚡</span><div class="dt">Физиотерапия</div><p class="dd">BTL-6000 Microwave, BTL-4625 Premium.</p><div class="db">BTL · Enraf Nonius</div></div>
+    <div class="dcard"><span class="dic">🦽</span><div class="dt">Реабилитация</div><p class="dd">Aidflex-X3, SELLA JX, «Орторент М».</p><div class="db">Unbescheiden · Элемаар</div></div>
+    <div class="dcard"><span class="dic">🧬</span><div class="dt">Стерилизация</div><p class="dd">Стерилизационное и дезинфекционное оборудование.</p><div class="db">DGM · BMT · Getinge</div></div>
+    <div class="dcard"><span class="dic">📊</span><div class="dt">Функциональная диагностика</div><p class="dd">Мониторинг, ЭКГ, ЭЭГ.</p><div class="db">Schiller · BTL</div></div>
+    <div class="dcard"><span class="dic">🪑</span><div class="dt">Медицинская мебель</div><p class="dd">Кровати, операционные столы, каталки.</p><div class="db">Lojer · Медин · БТ-Мебель</div></div>
+    <div class="dcard"><span class="dic">💫</span><div class="dt">Литотрипсия и УВТ</div><p class="dd">Ударно-волновая терапия.</p><div class="db">Storz Medical · Richard Wolf</div></div>
+  </div>
+</section>
+
+<!-- SUPPLIERS -->
+<section class="suppliers" id="suppliers">
+  <div class="stag">Партнёры</div>
+  <h2 class="stitle">Официальные<br>дистрибьюторские договоры</h2>
+  <p class="sdesc">Прямые соглашения с ведущими производителями. Все изделия с РУ Росздравнадзора.</p>
+  <div class="sup-grid">
+    <div class="scard"><div class="sn">B. Braun (Б.Браун)</div><div class="st">Договор подписан</div><p class="si">Клипсы для лигирования, дренажные системы Blake Drain, расходные материалы для кардиохирургии. Склад в Москве.</p><div class="ss">Активный поставщик</div></div>
+    <div class="scard"><div class="sn">Johnson & Johnson / СистеМед</div><div class="st">Договор подписан</div><p class="si">Расходные материалы для кардиохирургии и сосудистой хирургии, шовный материал премиального сегмента.</p><div class="ss">Активный поставщик</div></div>
+    <div class="scard"><div class="sn">ГК Медика / Армалайн</div><div class="st">Договор подписан</div><p class="si">Шовный хирургический материал: нержавеющая сталь, полиэфир, полиолефин, силикон. Широкий ассортимент.</p><div class="ss">Активный поставщик</div></div>
+    <div class="scard"><div class="sn">Элемаар</div><div class="st">Договор подписан</div><p class="si">Реабилитационное оборудование, физиотерапевтические комплексы. Поставки из наличия и под заказ.</p><div class="ss">Активный поставщик</div></div>
+    <div class="scard"><div class="sn">Репромед</div><div class="st">Договор подписан</div><p class="si">Электроды для кардиостимуляции. Специализированные расходные материалы для кардиологии.</p><div class="ss">Активный поставщик</div></div>
+    <div class="scard"><div class="sn">НаноМГ</div><div class="st" style="background:var(--g100);color:var(--g600);">На согласовании</div><p class="si">Гемостатические материалы Willocell Fibril. Инновационные решения для хирургического гемостаза.</p><div class="ss" style="color:var(--g400)">В процессе оформления</div></div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section class="documents" id="documents">
+  <div class="stag">Доверие</div>
+  <h2 class="stitle">Документы<br>и лицензии</h2>
+  <p class="sdesc">Полный пакет для участия в тендерах и коммерческих переговорах. По первому запросу.</p>
+  <div class="docs-grid">
+    <div class="docc"><div class="doc-ic">📋</div><div class="doc-t">Регистрационные удостоверения</div><p class="doc-d">РУ Росздравнадзора на все поставляемые медицинские изделия — обязательное условие для 44-ФЗ.</p><a href="#contact" class="doc-l">Запросить перечень →</a></div>
+    <div class="docc"><div class="doc-ic">🏛️</div><div class="doc-t">Учредительные документы</div><p class="doc-d">Устав, свидетельство о регистрации, выписка ЕГРЮЛ, карточка предприятия с реквизитами.</p><a href="#contact" class="doc-l">Скачать комплект →</a></div>
+    <div class="docc"><div class="doc-ic">🤝</div><div class="doc-t">Дистрибьюторские соглашения</div><p class="doc-d">Подтверждение официального статуса дистрибьютора от ключевых производителей.</p><a href="#contact" class="doc-l">Запросить →</a></div>
+    <div class="docc"><div class="doc-ic">📊</div><div class="doc-t">История участия в госзакупках</div><p class="doc-d">Реестровые данные контрактов. Верификация через zakupki.gov.ru.</p><a href="#contact" class="doc-l">Получить справку →</a></div>
+    <div class="docc"><div class="doc-ic">🧾</div><div class="doc-t">Налоговые документы</div><p class="doc-d">Справка об отсутствии задолженностей, подтверждение НДС 10% по медизделиям.</p><a href="#contact" class="doc-l">Запросить →</a></div>
+    <div class="docc"><div class="doc-ic">📦</div><div class="doc-t">Декларации соответствия</div><p class="doc-d">Сертификаты ГОСТ Р, подтверждение страны происхождения (ГИСП).</p><a href="#contact" class="doc-l">По запросу →</a></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section style="background:#F8F9FA;padding:96px 56px;" id="news">
+  <div class="stag">Отрасль</div>
+  <h2 class="stitle">Новости медтеха<br>и здравоохранения</h2>
+  <p class="sdesc">Актуальные события рынка: госзакупки, закон, технологии, мировой опыт. Обновляется регулярно.</p>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 36px;">
+    <span style="background:#0D6E4E;color:white;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;">Все</span>
+    <span style="background:white;border:1.5px solid #D8DCE0;color:#5A6472;font-size:12px;font-weight:600;padding:6px 16px;border-radius:20px;">Госзакупки</span>
+    <span style="background:white;border:1.5px solid #D8DCE0;color:#5A6472;font-size:12px;font-weight:600;padding:6px 16px;border-radius:20px;">Коррупция</span>
+    <span style="background:white;border:1.5px solid #D8DCE0;color:#5A6472;font-size:12px;font-weight:600;padding:6px 16px;border-radius:20px;">Технологии</span>
+    <span style="background:white;border:1.5px solid #D8DCE0;color:#5A6472;font-size:12px;font-weight:600;padding:6px 16px;border-radius:20px;">🌍 Мировой опыт</span>
+  </div>
+
+  <!-- ГЛАВНАЯ НОВОСТЬ -->
+  <div style="background:white;border:1.5px solid #EEF0F2;border-radius:16px;overflow:hidden;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+    <div style="background:linear-gradient(135deg,#0A5C42,#16A069);padding:44px 40px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <span style="background:rgba(255,255,255,0.15);color:white;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;">🔥 Главное</span>
+        <div style="margin-top:24px;font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:white;line-height:1.2;">Минздрав централизует закупки медоборудования через ФЦПиЛО с 2026 года</div>
+      </div>
+      <div style="color:rgba(255,255,255,0.55);font-size:13px;margin-top:24px;">Октябрь 2025 · Forbes.ru</div>
+    </div>
+    <div style="padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#16A069;margin-bottom:12px;">Госзакупки и закон</div>
+        <p style="font-size:14.5px;line-height:1.7;color:#5A6472;">С 2026 года закупки дорогостоящего медоборудования (МРТ, КТ, ИВЛ) из федерального бюджета будут проходить только через ФЦПиЛО. Регионы теряют право самостоятельно закупать тяжёлую технику в рамках нацпроектов.</p>
+        <div style="margin-top:16px;padding:14px 16px;background:#FFF8E8;border-left:3px solid #E8A020;border-radius:0 8px 8px 0;">
+          <div style="font-size:11.5px;font-weight:700;color:#8A5C00;margin-bottom:4px;">💼 Что это значит для поставщиков</div>
+          <div style="font-size:13px;color:#6B4800;">Средние и малые компании рискуют потерять доступ к крупным тендерам. Выигрывают те, кто выстроил отношения с федеральными заказчиками заранее.</div>
+        </div>
+      </div>
+      <a href="https://www.forbes.ru/healthcare/549062" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:#0D6E4E;font-size:13px;font-weight:600;text-decoration:none;margin-top:18px;">Читать на Forbes.ru →</a>
+    </div>
+  </div>
+
+  <!-- СЕТКА 3×3 -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px;">
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#E8F7F1;padding:18px 20px 14px;"><span style="background:#0D6E4E;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">Рынок</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">Госзакупки медицины за 9 мес. 2025 — 1,087 трлн ₽</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;">По данным РТС-тендер, объём медицинских госзакупок по 44-ФЗ и 223-ФЗ за январь–сентябрь 2025 превысил 1 трлн рублей. Закупки лекарств — 764 млрд ₽. Пик активности — ноябрь–декабрь.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">РТС-тендер · Сент. 2025</span><span style="font-size:12px;font-weight:700;color:#16A069;">+26,8% за год</span></div></div>
+    </div>
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#FEF2F2;padding:18px 20px 14px;"><span style="background:#C0392B;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">Коррупция</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">Арест министра здравоохранения Краснодарского края</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;">18 марта 2026 г. суд арестовал главу краснодарского Минздрава Евгения Филиппова. Следствие обнаружило имущество на 1 млрд ₽ — 57 объектов. Обвинение по ч.4 ст.159 УК РФ (мошенничество в особо крупном размере).</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Интерфакс · Март 2026</span><span style="font-size:12px;font-weight:700;color:#C0392B;">Арест</span></div></div>
+    </div>
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#FEF2F2;padding:18px 20px 14px;"><span style="background:#C0392B;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">Коррупция</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">Хищение 53 млн ₽ на медтехнику в Ингушетии — арест министра</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;">Арестован экс-министр здравоохранения Ингушетии Балаев: хищение 53 млн ₽ из средств на закупку медоборудования. Схема — группа лиц по предварительному сговору. Отдельно — дело замминистра за завышение цен при госзакупках.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Июль 2025</span><span style="font-size:12px;font-weight:700;color:#C0392B;">СИЗО</span></div></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px;">
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#E8F7F1;padding:18px 20px 14px;"><span style="background:#0D6E4E;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">Рынок</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">В 2025 году в регионах сменились 26 министров здравоохранения</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;">По данным Vademecum, за 2025 год главы региональных органов здравоохранения сменились в 26 субъектах РФ. Причины: увольнения «по собственному желанию», уголовные дела, критика губернаторов. Рекорд кадровых изменений — январь (6 регионов).</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Vademecum · Янв. 2026</span><span style="font-size:12px;font-weight:700;color:#5A6472;">26 регионов</span></div></div>
+    </div>
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#EEF4FF;padding:18px 20px 14px;"><span style="background:#1B6FCB;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">🌍 Мировой опыт</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">Medtronic Hugo™: FDA одобрил роботизированную систему для урологии</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;"><strong style="color:#1B6FCB;">EN:</strong> FDA clearance of Hugo™ robotic-assisted surgery system for prostatectomy, nephrectomy, cystectomy (Dec 2025).<br><strong style="color:#0D6E4E;">РУ:</strong> FDA одобрил систему Hugo от Medtronic для урологических операций. Модульный дизайн — руки-манипуляторы перемещаются между операционными. Конкурент da Vinci.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Medtronic · Дек. 2025</span><span style="font-size:12px;font-weight:700;color:#1B6FCB;">FDA ✓</span></div></div>
+    </div>
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#EEF4FF;padding:18px 20px 14px;"><span style="background:#1B6FCB;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">🌍 Мировой опыт</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">ИИ EchoNext выявляет болезни сердца точнее врачей: 77% vs 64%</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;"><strong style="color:#1B6FCB;">EN:</strong> Columbia's EchoNext tool identified hidden structural heart disease from ECGs with 77% accuracy vs 64% for clinicians.<br><strong style="color:#0D6E4E;">РУ:</strong> ИИ-инструмент EchoNext (Колумбийский университет) находит скрытые структурные болезни сердца по ЭКГ точнее врачей-клиницистов. Тысячи ранее неопознанных случаев.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Becker's ASC · Дек. 2025</span><span style="font-size:12px;font-weight:700;color:#1B6FCB;">AI-кардиология</span></div></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px;">
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#EEF4FF;padding:18px 20px 14px;"><span style="background:#1B6FCB;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">🌍 Мировой опыт</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">Первая межконтинентальная роботизированная операция на сердце</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;"><strong style="color:#1B6FCB;">EN:</strong> SS Innovations completes world's first intercontinental robotic cardiac telesurgery (July 2025).<br><strong style="color:#0D6E4E;">РУ:</strong> Первая в мире удалённая операция на сердце между разными континентами — хирург управлял манипуляторами в реальном времени из другой страны.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">ACS · Июль 2025</span><span style="font-size:12px;font-weight:700;color:#1B6FCB;">Телехирургия</span></div></div>
+    </div>
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#F0FDF4;padding:18px 20px 14px;"><span style="background:#16A069;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">⚡ Технологии</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">ИИ в медтехе: инвестиции вырастут с $2,4 до $11,9 млрд к 2029 году</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;">По оценке GlobalData, расходы медтех-компаний на ИИ вырастут в 5 раз к 2029 году. До 2035 года будет одобрено ещё 2 646 ИИ-решений: роботизированная хирургия, персонализированное лечение, мониторинг пациентов в реальном времени.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Medical Device Network · Дек. 2025</span><span style="font-size:12px;font-weight:700;color:#16A069;">×5 рост</span></div></div>
+    </div>
+    <div style="background:white;border:1.5px solid #EEF0F2;border-radius:14px;overflow:hidden;">
+      <div style="background:#E8F7F1;padding:18px 20px 14px;"><span style="background:#0D6E4E;color:white;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">Нацрежим</span><div style="font-size:15px;font-weight:700;color:#111820;line-height:1.3;margin-top:10px;">63% замены медтехники в 2025 — отечественные производители</div></div>
+      <div style="padding:16px 20px 18px;"><p style="font-size:13px;color:#5A6472;line-height:1.65;">Минздрав: в 2025 году доля российской техники среди заменённого оборудования превысила 63% (в 2024-м — 57%). Цель госстратегии — 80% по ключевым группам к 2030 году. МРТ и ангиографы пока не производятся в России.</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;"><span style="font-size:11px;color:#9AA3AD;">Минздрав РФ · Окт. 2025</span><span style="font-size:12px;font-weight:700;color:#16A069;">До 2030</span></div></div>
+    </div>
+  </div>
+
+  <!-- ПОДПИСКА -->
+  <div style="background:linear-gradient(135deg,#0A5C42,#0D6E4E);border-radius:16px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+    <div><div style="font-size:18px;font-weight:700;color:white;margin-bottom:6px;">Получайте новости отрасли первыми</div><div style="font-size:14px;color:rgba(255,255,255,0.6);">Еженедельный дайджест: закупки, закон, технологии, мировой опыт</div></div>
+    <div style="display:flex;gap:10px;flex-shrink:0;"><input type="email" placeholder="Ваш email" style="padding:12px 16px;border-radius:8px;border:none;font-family:'Manrope',sans-serif;font-size:14px;width:220px;outline:none;"><button style="background:white;color:#0D6E4E;padding:12px 22px;border-radius:8px;border:none;font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Подписаться</button></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="stag">Связь</div>
+  <h2 class="stitle">Оставьте заявку</h2>
+  <p class="sdesc">Запросите КП для тендера или коммерческое предложение. Ответ в течение 2 часов.</p>
+  <div class="c-grid">
+    <div class="cf">
+      <div><div class="cl" style="margin-bottom:8px">Тип обращения</div>
+        <div class="cf-tabs"><button class="cf-tab on">Тендер 44-ФЗ</button><button class="cf-tab">Тендер 223-ФЗ</button><button class="cf-tab">Коммерческий запрос</button></div>
+      </div>
+      <div class="cf-row"><div class="cg"><label class="cl">Организация</label><input class="ci" type="text" placeholder="ФГБУ «...»"></div><div class="cg"><label class="cl">ИНН заказчика</label><input class="ci" type="text" placeholder="7700000000"></div></div>
+      <div class="cf-row"><div class="cg"><label class="cl">Контактное лицо</label><input class="ci" type="text" placeholder="Иванова Анна Петровна"></div><div class="cg"><label class="cl">Телефон</label><input class="ci" type="tel" placeholder="+7 (___) ___-__-__"></div></div>
+      <div class="cg"><label class="cl">Предмет закупки</label><input class="ci" type="text" placeholder="Шовный материал, клипсы, дренажи..."></div>
+      <div class="cg"><label class="cl">Комментарий</label><textarea class="ci cta" placeholder="Объём, сроки, особые требования..."></textarea></div>
+      <button class="btn-p" style="align-self:flex-start">Отправить запрос →</button>
+    </div>
+    <div class="cinfo">
+      <div class="cb"><div class="cbl">Телефон</div><a href="tel:+79682680069" class="cbv">+7 (968) 268-00-69</a><div class="cbs">Пн–Пт 9:00–18:00</div></div>
+      <div class="cb"><div class="cbl">Email</div><a href="/cdn-cgi/l/email-protection#047e656771746f6d44776b726176776c616a7770726b7e607665722a7671" class="cbv" style="font-size:15px"><span class="__cf_email__" data-cfemail="f08a919385809b99b0839f8695828398959e8384869f8a94829186de8285">[email&#160;protected]</span></a><div class="cbs">Тендерные запросы и КП</div></div>
+      <div class="cb"><div class="cbl">Адрес</div><span class="cbv" style="font-size:17px">г. Ставрополь</span><div class="cbs">ул. Тухачевского, д. 21, корп. 2, офис 136</div></div>
+      <div class="cb"><div class="cbl">Реквизиты</div><div class="cdet"><div class="cdr"><span class="cdk">ИНН / КПП</span><span class="cdv">2635810410 / 263501001</span></div><div class="cdr"><span class="cdk">ОГРН</span><span class="cdv">1122651006720</span></div><div class="cdr"><span class="cdk">Р/счёт</span><span class="cdv">40702810860240003599</span></div><div class="cdr"><span class="cdk">Банк</span><span class="cdv">Сбербанк, БИК 040702615</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div><div class="ft-logo"><div class="ft-cross"></div><span class="ft-name">Совершенство СК</span></div><p class="ft-tag">Официальный дистрибьютор медицинского оборудования и расходных материалов. Поставки по 44-ФЗ и 223-ФЗ по всей России.</p></div>
+    <div><div class="fct">Навигация</div><ul class="flinks"><li><a href="#goszakaz">Госзакупки 44/223-ФЗ</a></li><li><a href="#contracts">Контракты</a></li><li><a href="#directions">Оборудование</a></li><li><a href="#documents">Документы</a></li><li><a href="#contact">Контакты</a></li></ul></div>
+    <div><div class="fct">Направления</div><ul class="flinks"><li><a href="#">Хирургия</a></li><li><a href="#">Анестезиология</a></li><li><a href="#">Диагностика</a></li><li><a href="#">Физиотерапия</a></li><li><a href="#">Реабилитация</a></li></ul></div>
+    <div><div class="fct">Контакты</div><ul class="flinks"><li><a href="tel:+79682680069">+7 (968) 268-00-69</a></li><li><a href="/cdn-cgi/l/email-protection#5d273c3e282d36341d2e322b382f2e3538332e292b3227392f3c2b732f28"><span class="__cf_email__" data-cfemail="99e3f8faece9f2f0d9eaf6effcebeaf1fcf7eaedeff6e3fdebf8efb7ebec">[email&#160;protected]</span></a></li><li><a href="#">г. Ставрополь</a></li><li><a href="#">ИНН 2635810410</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><div class="ft-copy">© 2025 ООО «Совершенство СК». Все права защищены.</div><div class="ft-leg"><a href="#">Политика конфиденциальности</a><a href="#">Реквизиты</a></div></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.cf
