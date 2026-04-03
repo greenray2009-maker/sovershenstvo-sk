@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Совершенство СК — Медицинское оборудование</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#0C1015;
+  --green:#0D6E4E;
+  --green-l:#16A069;
+  --green-pale:#F0FAF5;
+  --white:#FFFFFF;
+  --gray:#F4F5F4;
+  --text:#1A2420;
+  --muted:#6B7A74;
+  --border:#E0E6E2;
+  --accent:#00C27A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Geologica',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  height:68px;display:flex;align-items:center;
+  padding:0 48px;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-icon{
+  width:36px;height:36px;background:var(--green);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;
+}
+.nav-icon::before,.nav-icon::after{
+  content:'';position:absolute;background:#fff;border-radius:2px;
+}
+.nav-icon::before{width:4px;height:18px;}
+.nav-icon::after{width:18px;height:4px;}
+.nav-brand{display:flex;flex-direction:column;}
+.nav-name{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--text);letter-spacing:0.02em;line-height:1.2;}
+.nav-sub{font-size:9px;font-weight:400;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:1px;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:400;letter-spacing:0.01em;transition:color .2s;}
+.nav-links a:hover{color:var(--green);}
+.nav-r{display:flex;align-items:center;gap:16px;}
+.nav-tel{font-size:13px;font-weight:500;color:var(--text);text-decoration:none;transition:color .2s;}
+.nav-tel:hover{color:var(--green);}
+.btn-cta{
+  background:var(--green);color:#fff;padding:9px 20px;
+  border-radius:6px;font-size:13px;font-weight:500;
+  text-decoration:none;transition:background .2s;letter-spacing:0.01em;
+}
+.btn-cta:hover{background:var(--green-l);}
+
+/* BURGER */
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none;}
+.burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{
+  display:none;position:fixed;top:68px;left:0;right:0;bottom:0;
+  background:var(--white);z-index:99;padding:28px 24px;
+  flex-direction:column;overflow-y:auto;border-top:1px solid var(--border);
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{
+  display:block;padding:16px 0;font-size:16px;font-weight:400;
+  color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);
+  transition:color .2s;
+}
+.mob-menu a:hover{color:var(--green);}
+.mob-menu .mob-tel{font-size:18px;font-weight:600;padding:20px 0 14px;border-bottom:1px solid var(--border);}
+.mob-menu .mob-cta{
+  margin-top:20px;background:var(--green);color:#fff;padding:14px;
+  border-radius:8px;text-align:center;font-weight:500;font-size:15px;
+  border:none;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;padding:120px 48px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  background:var(--white);position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;right:-120px;top:-120px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(13,110,78,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green-pale);border:1px solid rgba(13,110,78,0.15);
+  border-radius:4px;padding:5px 12px;margin-bottom:24px;
+}
+.hero-label span{font-size:11px;font-weight:500;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(28px,3.2vw,46px);font-weight:700;
+  color:var(--text);line-height:1.12;
+  letter-spacing:-0.02em;margin-bottom:20px;
+}
+h1 span{color:var(--green);}
+.hero-desc{
+  font-size:16px;color:var(--muted);line-height:1.75;
+  max-width:480px;margin-bottom:36px;font-weight:300;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green);color:#fff;padding:13px 26px;
+  border-radius:6px;font-size:14px;font-weight:500;
+  text-decoration:none;transition:all .2s;border:none;cursor:pointer;
+  font-family:'Geologica',sans-serif;
+}
+.btn-primary:hover{background:var(--green-l);transform:translateY(-1px);}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--green);padding:13px 26px;
+  border-radius:6px;font-size:14px;font-weight:500;
+  text-decoration:none;border:1.5px solid var(--green);transition:all .2s;
+}
+.btn-secondary:hover{background:var(--green-pale);}
+.hero-stats{display:flex;gap:32px;}
+.stat{border-left:2px solid var(--border);padding-left:20px;}
+.stat:first-child{border-left:none;padding-left:0;}
+.stat-n{font-family:'Unbounded',sans-serif;font-size:24px;font-weight:700;color:var(--green);display:block;line-height:1;}
+.stat-l{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4;font-weight:300;}
+
+/* HERO RIGHT */
+.hero-r{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2;}
+.info-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:20px 22px;
+  box-shadow:0 2px 16px rgba(0,0,0,0.04);
+}
+.info-card-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.info-card-value{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:600;color:var(--green);margin-bottom:4px;}
+.info-card-sub{font-size:12px;color:var(--muted);font-weight:300;}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.tag{
+  display:inline-flex;background:var(--green-pale);
+  color:var(--green);font-size:11px;font-weight:500;
+  padding:4px 10px;border-radius:4px;letter-spacing:0.03em;
+}
+
+/* ── TRUST BAR ── */
+.trust{
+  background:var(--dark);padding:14px 48px;
+  display:flex;align-items:center;gap:0;overflow-x:auto;
+}
+.ti{
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+  color:rgba(255,255,255,0.5);font-size:12px;font-weight:300;
+  padding-right:32px;margin-right:32px;
+  border-right:1px solid rgba(255,255,255,0.1);flex-shrink:0;
+}
+.ti:last-child{border-right:none;margin-right:0;}
+.ti-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+/* ── SECTIONS ── */
+section{padding:80px 48px;}
+.s-label{
+  font-size:10px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--green);
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.s-label::before{content:'';width:24px;height:1px;background:var(--green);}
+h2{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(22px,2.8vw,36px);font-weight:700;
+  color:var(--text);line-height:1.15;margin-bottom:14px;
+  letter-spacing:-0.02em;
+}
+h2.light{color:#fff;}
+.s-desc{font-size:15px;color:var(--muted);line-height:1.7;max-width:520px;font-weight:300;}
+
+/* ── ГОСЗАКУПКИ ── */
+.goszakaz{background:var(--gray);}
+.gz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px;}
+.gz-card{
+  background:var(--white);border-radius:10px;padding:28px;
+  border:1px solid var(--border);position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.gz-card:hover{border-color:var(--green);transform:translateY(-2px);}
+.gz-card-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);}
+.gz-num{
+  font-family:'Unbounded',sans-serif;font-size:36px;font-weight:700;
+  color:var(--green);display:block;line-height:1;margin-bottom:8px;
+}
+.gz-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.gz-who{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.5;font-weight:300;}
+.gz-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.gz-list li{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text);line-height:1.5;font-weight:300;}
+.gz-list li::before{content:'—';color:var(--green);font-weight:600;flex-shrink:0;}
+
+/* ── КОНТРАКТЫ ── */
+.contracts{background:var(--dark);}
+.ct-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;}
+.ct-total-n{
+  font-family:'Unbounded',sans-serif;font-size:40px;font-weight:700;
+  color:var(--accent);display:block;line-height:1;
+}
+.ct-total-l{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;font-weight:300;}
+.ct-table{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;overflow:hidden;
+}
+.ct-head{
+  display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr;
+  padding:12px 24px;background:rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.ct-th{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.ct-row{
+  display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr;
+  padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.04);
+  align-items:center;transition:background .15s;
+}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:rgba(255,255,255,0.03);}
+.ct-td{font-size:13px;color:rgba(255,255,255,0.6);font-weight:300;}
+.ct-td.main{color:#fff;font-weight:500;}
+.ct-amt{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:var(--accent);}
+.ct-badge{
+  display:inline-flex;font-size:10px;font-weight:500;
+  padding:3px 10px;border-radius:4px;letter-spacing:0.04em;
+}
+.ct-done{background:rgba(0,194,122,0.12);color:#4DDBAA;}
+.ct-act{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);}
+.ct-note{
+  margin-top:16px;padding:14px 20px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px;font-size:12px;color:rgba(255,255,255,0.3);
+  line-height:1.6;font-weight:300;
+}
+
+/* ── НАПРАВЛЕНИЯ ── */
+.directions{background:var(--white);}
+.dir-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;}
+.dir-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:8px;padding:22px 18px;
+  transition:border-color .2s,background .2s;cursor:default;
+}
+.dir-card:hover{border-color:var(--green);background:var(--green-pale);}
+.dir-ic{font-size:24px;margin-bottom:12px;display:block;}
+.dir-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.3;}
+.dir-d{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:10px;font-weight:300;}
+.dir-more{font-size:11px;font-weight:500;color:var(--green);letter-spacing:0.03em;}
+
+/* ── ПОСТАВЩИКИ ── */
+.suppliers{background:var(--gray);}
+.sup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.sup-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:22px;}
+.sup-logo{height:36px;display:flex;align-items:center;margin-bottom:10px;}
+.sup-name{font-size:15px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.sup-badge{
+  display:inline-block;background:var(--green-pale);color:var(--green);
+  font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:3px 8px;border-radius:3px;margin-bottom:12px;
+}
+.sup-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px;font-weight:300;}
+.sup-status{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--green);}
+.sup-status::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+/* ── ДОКУМЕНТЫ ── */
+.documents{background:var(--green-pale);}
+.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px;}
+.doc-card{
+  background:var(--white);border:1px solid var(--border);border-radius:8px;
+  padding:22px 20px;display:flex;flex-direction:column;gap:12px;
+  transition:border-color .2s;
+}
+.doc-card:hover{border-color:var(--green);}
+.doc-ic{
+  width:40px;height:40px;background:var(--green-pale);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.doc-title{font-size:14px;font-weight:600;color:var(--text);}
+.doc-desc{font-size:12px;color:var(--muted);line-height:1.6;flex:1;font-weight:300;}
+.doc-link{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--green);font-size:12px;font-weight:500;
+  text-decoration:none;transition:gap .2s;
+}
+.doc-link:hover{gap:10px;}
+
+/* ── КОНТАКТ ── */
+.contact{background:var(--white);}
+.c-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;margin-top:48px;}
+
+/* ФОРМА */
+.form{display:flex;flex-direction:column;gap:16px;}
+.form-tabs{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:4px;}
+.form-tab{
+  flex:1;padding:10px;border:none;cursor:pointer;
+  font-family:'Geologica',sans-serif;font-size:12px;font-weight:500;
+  background:var(--gray);color:var(--muted);transition:all .2s;
+  letter-spacing:0.03em;
+}
+.form-tab.active{background:var(--green);color:#fff;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-label{font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+.form-input,.form-textarea{
+  padding:10px 12px;border:1px solid var(--border);border-radius:6px;
+  font-family:'Geologica',sans-serif;font-size:13px;color:var(--text);
+  background:var(--white);outline:none;transition:border-color .2s;font-weight:300;
+}
+.form-input:focus,.form-textarea:focus{border-color:var(--green);}
+.form-textarea{resize:vertical;min-height:100px;}
+.form-submit{
+  background:var(--green);color:#fff;padding:12px;
+  border:none;border-radius:6px;font-family:'Geologica',sans-serif;
+  font-size:14px;font-weight:500;cursor:pointer;transition:background .2s;
+  letter-spacing:0.02em;
+}
+.form-submit:hover{background:var(--green-l);}
+
+/* КОНТАКТЫ */
+.contact-info{display:flex;flex-direction:column;gap:24px;padding-top:4px;}
+.c-block{padding-bottom:24px;border-bottom:1px solid var(--border);}
+.c-block:last-child{border-bottom:none;padding-bottom:0;}
+.c-block-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.c-block-value{font-size:18px;font-weight:600;color:var(--text);text-decoration:none;display:block;transition:color .2s;line-height:1.3;}
+.c-block-value:hover{color:var(--green);}
+.c-block-sub{font-size:12px;color:var(--muted);margin-top:3px;font-weight:300;}
+.c-details{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.c-det-row{display:flex;justify-content:space-between;font-size:12px;}
+.c-det-k{color:var(--muted);font-weight:300;}
+.c-det-v{color:var(--text);font-weight:500;font-family:'Geologica',sans-serif;}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:48px 48px 28px;}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.ft-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.ft-icon{
+  width:30px;height:30px;background:var(--green);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;
+}
+.ft-icon::before,.ft-icon::after{content:'';position:absolute;background:#fff;border-radius:2px;}
+.ft-icon::before{width:3px;height:14px;}
+.ft-icon::after{width:14px;height:3px;}
+.ft-name{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#fff;}
+.ft-desc{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:240px;font-weight:300;}
+.ft-col-title{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.ft-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:12px;font-weight:300;transition:color .2s;}
+.ft-links a:hover{color:#fff;}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);}
+.ft-copy{font-size:11px;color:rgba(255,255,255,0.2);font-weight:300;}
+.ft-inn{font-size:11px;color:rgba(255,255,255,0.2);font-weight:300;}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:0 20px;height:60px;}
+  .nav-links,.nav-r{display:none;}
+  .burger{display:flex;}
+  .hero{grid-template-columns:1fr;padding:90px 20px 56px;gap:32px;}
+  .hero::after{display:none;}
+  .hero-r{display:none;}
+  .hero-stats{flex-wrap:wrap;gap:20px;}
+  .stat{width:45%;border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:14px;}
+  section{padding:56px 20px;}
+  .gz-grid{grid-template-columns:1fr;gap:14px;}
+  .ct-head,.ct-row{grid-template-columns:2fr 1fr;padding:12px 16px;}
+  .ct-th:nth-child(4),.ct-td:nth-child(4){display:none;}
+  .dir-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .sup-grid{grid-template-columns:1fr;gap:12px;}
+  .docs-grid{grid-template-columns:1fr;gap:12px;}
+  .c-grid{grid-template-columns:1fr;gap:36px;}
+  .form-row{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:28px;}
+  .trust{padding:12px 20px;}
+  .hero-actions{flex-direction:column;}
+  .btn-primary,.btn-secondary{text-align:center;justify-content:center;}
+  .ct-header{flex-direction:column;gap:12px;align-items:flex-start;}
+  h1{font-size:26px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-icon"></div>
+    <div class="nav-brand">
+      <div class="nav-name">Совершенство СК</div>
+      <div class="nav-sub">Медицинское оборудование</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#goszakaz">44-ФЗ / 223-ФЗ</a></li>
+    <li><a href="#contracts">Контракты</a></li>
+    <li><a href="#directions">Оборудование</a></li>
+    <li><a href="#documents">Документы</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="tel:+79682680069" class="nav-tel">+7 (968) 268-00-69</a>
+    <a href="#contact" class="btn-cta">Запросить КП</a>
+  </div>
+  <button class="burger" id="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- МОБИЛЬНОЕ МЕНЮ -->
+<div class="mob-menu" id="mobMenu">
+  <a href="tel:+79682680069" class="mob-tel">+7 (968) 268-00-69</a>
+  <a href="#goszakaz" onclick="closeMenu()">44-ФЗ / 223-ФЗ</a>
+  <a href="#contracts" onclick="closeMenu()">Контракты</a>
+  <a href="#directions" onclick="closeMenu()">Оборудование</a>
+  <a href="#documents" onclick="closeMenu()">Документы</a>
+  <a href="#contact" onclick="closeMenu()">Контакты</a>
+  <a href="#contact" class="mob-cta" onclick="closeMenu()">Запросить КП</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-label">
+      <div class="hero-dot"></div>
+      <span>Аккредитованный поставщик · 44-ФЗ · 223-ФЗ</span>
+    </div>
+    <h1>Медицинское<br>оборудование<br>и <span>расходники</span></h1>
+    <p class="hero-desc">Поставки в ФГБУ, региональные больницы и корпоративные медцентры. Полный цикл: подбор, тендерное сопровождение, поставка, монтаж.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Запросить коммерческое предложение →</a>
+      <a href="#contracts" class="btn-secondary">Наши контракты</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-n">385М+</span>
+        <span class="stat-l">Портфель контрактов<br>2025–2026</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">12</span>
+        <span class="stat-l">Направлений<br>медтехники</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">44/223</span>
+        <span class="stat-l">Работаем<br>по ФЗ</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="info-card">
+      <div class="info-card-label">Ключевой заказчик 2025–2026</div>
+      <div class="info-card-value">ФГБУ Бакулева</div>
+      <div class="info-card-sub">НМИЦ ССХ им. А.Н. Бакулева, Минздрав России</div>
+      <div class="tags">
+        <span class="tag">Кардиохирургия</span>
+        <span class="tag">Расходники</span>
+        <span class="tag">44-ФЗ</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Направления поставок</div>
+      <div class="tags" style="margin-top:0">
+        <span class="tag">Шовный материал</span>
+        <span class="tag">Клипсы</span>
+        <span class="tag">Дренажи</span>
+        <span class="tag">Зажимы</span>
+        <span class="tag">Гемостатики</span>
+        <span class="tag">Физиотерапия</span>
+        <span class="tag">Реабилитация</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Партнёры-поставщики</div>
+      <div class="tags" style="margin-top:0">
+        <span class="tag">B. Braun</span>
+        <span class="tag">J&J</span>
+        <span class="tag">Армалайн</span>
+        <span class="tag">Элемаар</span>
+        <span class="tag">Репромед</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="ti"><div class="ti-dot"></div>РУ Росздравнадзора</div>
+  <div class="ti"><div class="ti-dot"></div>Аккредитация в ЕИС zakupki.gov.ru</div>
+  <div class="ti"><div class="ti-dot"></div>НДС 10% на медизделия</div>
+  <div class="ti"><div class="ti-dot"></div>Поставки по всей России</div>
+  <div class="ti"><div class="ti-dot"></div>Ставрополь · Москва</div>
+</div>
+
+<!-- ГОСЗАКУПКИ -->
+<section class="goszakaz" id="goszakaz">
+  <div class="s-label">Государственные закупки</div>
+  <h2>Работаем по 44-ФЗ<br>и 223-ФЗ</h2>
+  <p class="s-desc">Полное тендерное сопровождение — от формирования ТЗ до закрывающих документов.</p>
+  <div class="gz-grid">
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="gz-card">
+        <div class="gz-card-stripe"></div>
+        <span class="gz-num">44-ФЗ</span>
+        <div class="gz-title">Контрактная система в сфере закупок</div>
+        <div class="gz-who">ФГБУ, федеральные медцентры, региональные больницы</div>
+        <ul class="gz-list">
+          <li>Электронные аукционы и котировки на ЕИС</li>
+          <li>Закупки у единственного поставщика до 600 тыс. ₽</li>
+          <li>Формирование ТЗ с ОКПД2 и классом риска</li>
+          <li>Типовой контракт Минздрава (Приказ №724н)</li>
+        </ul>
+      </div>
+      <div class="gz-card">
+        <div class="gz-card-stripe"></div>
+        <span class="gz-num">223-ФЗ</span>
+        <div class="gz-title">Закупки отдельными видами юрлиц</div>
+        <div class="gz-who">Частные клиники, корпоративная медицина: РЖД, Газпром, Лукойл</div>
+        <ul class="gz-list">
+          <li>Работа по положению о закупках заказчика</li>
+          <li>Гибкие условия оплаты и поставки</li>
+          <li>Индивидуальные коммерческие предложения</li>
+          <li>Подтверждение страны происхождения (ГИСП)</li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="gz-card" style="border-left:3px solid var(--green);">
+        <div class="gz-title" style="margin-bottom:8px;">01 — Ключевой партнёр</div>
+        <div style="font-size:15px;font-weight:600;color:var(--green);margin-bottom:4px;">ФГБУ «НМИЦ ССХ им. Бакулева»</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:300;">Минздрав России — поставки расходных материалов для кардиохирургии с 2023 года</div>
+      </div>
+      <div class="gz-card" style="border-left:3px solid var(--green);">
+        <div class="gz-title" style="margin-bottom:8px;">02 — Документация</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:300;line-height:1.7;">РУ Росздравнадзора на весь ассортимент. Декларации соответствия. Полный комплект закрывающих документов.</div>
+      </div>
+      <div class="gz-card" style="border-left:3px solid var(--green);">
+        <div class="gz-title" style="margin-bottom:8px;">03 — Сроки поставки</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:300;line-height:1.7;">Склад в Ставрополе и Москве. Срочные поставки от 3 дней. Работаем с отсрочкой платежа по контракту.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТРАКТЫ -->
+<section class="contracts" id="contracts">
+  <div class="ct-header">
+    <div>
+      <div class="s-label" style="color:rgba(255,255,255,0.35);">— Портфель контрактов</div>
+      <h2 class="light">Исполненные<br>контракты 2025</h2>
+    </div>
+    <div style="text-align:right;">
+      <span class="ct-total-n">385М+</span>
+      <div class="ct-total-l">Общая сумма · 2025–2026</div>
+    </div>
+  </div>
+  <div class="ct-table">
+    <div class="ct-head">
+      <div class="ct-th">Предмет поставки</div>
+      <div class="ct-th">Сумма контракта</div>
+      <div class="ct-th">Статус</div>
+      <div class="ct-th">Год</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Нить хирургическая из полиолефина, мононить (Лот 1)</div>
+      <div class="ct-amt">55 451 815 ₽</div>
+      <div><span class="ct-badge ct-done">Исполнен</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Нить хирургическая из полиэфира, рассасывающаяся (Лот 2)</div>
+      <div class="ct-amt">71 313 705 ₽</div>
+      <div><span class="ct-badge ct-done">Исполнен</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Шовный хирургический материал (через Русстандарт)</div>
+      <div class="ct-amt">194 500 256 ₽</div>
+      <div><span class="ct-badge ct-act">Исполняется</span></div>
+      <div class="ct-td">2026</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Клипса для лигирования металлическая</div>
+      <div class="ct-amt">10 064 106 ₽</div>
+      <div><span class="ct-badge ct-act">Исполняется</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Заплата сердечно-сосудистая синтетическая</div>
+      <div class="ct-amt">11 203 572 ₽</div>
+      <div><span class="ct-badge ct-act">Исполняется</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Трубка дренажная для закрытой раны</div>
+      <div class="ct-amt">19 988 793 ₽</div>
+      <div><span class="ct-badge ct-act">Исполняется</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Воск костный натуральный</div>
+      <div class="ct-amt">2 770 305 ₽</div>
+      <div><span class="ct-badge ct-act">Исполняется</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-td main">Гемостатик на основе полисахаридов (Лот 6)</div>
+      <div class="ct-amt">20 117 715 ₽</div>
+      <div><span class="ct-badge ct-done">Исполнен</span></div>
+      <div class="ct-td">2025</div>
+    </div>
+  </div>
+  <div class="ct-note">Все контракты размещены в Единой информационной системе в сфере закупок — zakupki.gov.ru</div>
+</section>
+
+<!-- НАПРАВЛЕНИЯ -->
+<section class="directions" id="directions">
+  <div class="s-label">Оборудование и расходники</div>
+  <h2>12 направлений<br>медтехники</h2>
+  <p class="s-desc">Работаем с ведущими производителями. Полный комплект разрешительной документации.</p>
+  <div class="dir-grid">
+    <div class="dir-card">
+      <div class="dir-num">01</div>
+      <div class="dir-t">Шовный материал</div>
+      <div class="dir-d">Рассасывающиеся и нерассасывающиеся нити. B. Braun, Ethicon</div>
+      <div class="dir-more">B. Braun · Ethicon</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">02</div>
+      <div class="dir-t">Хирургические клипсы</div>
+      <div class="dir-d">Клипаторы и клипсы для лапароскопии и открытой хирургии</div>
+      <div class="dir-more">Aesculap · Коваль</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">03</div>
+      <div class="dir-t">Дренажные системы</div>
+      <div class="dir-d">Дренажи для грудной и брюшной полости, силиконовые трубки</div>
+      <div class="dir-more">Армалайн · Репромед</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">04</div>
+      <div class="dir-t">Кардиохирургия</div>
+      <div class="dir-d">Расходники для АИК, оксигенаторы, канюли, перфузионные системы</div>
+      <div class="dir-more">Livanova · Медиана</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">05</div>
+      <div class="dir-t">Гемостатики</div>
+      <div class="dir-d">Гемостатические матрицы, воск, губки. Контроль кровотечений</div>
+      <div class="dir-more">Baxter · J&J</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">06</div>
+      <div class="dir-t">Физиотерапия</div>
+      <div class="dir-d">Аппараты УВЧ, лазерной терапии, магнитотерапии, электростимуляции</div>
+      <div class="dir-more">Элемаар · Радмир</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">07</div>
+      <div class="dir-t">Реабилитация</div>
+      <div class="dir-d">Тренажёры для восстановления, вертикализаторы, ортезы</div>
+      <div class="dir-more">Орторент · Тривес</div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-num">08</div>
+      <div class="dir-t">Электроды и датчики</div>
+      <div class="dir-d">ЭКГ-электроды, датчики SpO2, манжеты АД. Одноразовые и многоразовые</div>
+      <div class="dir-more">Nikomed · Амбу</div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОСТАВЩИКИ -->
+<section class="suppliers" id="suppliers">
+  <div class="s-label">Партнёры-производители</div>
+  <h2>Работаем напрямую<br>с производителями</h2>
+  <p class="s-desc">Прямые контракты — конкурентные цены и гарантированные сроки поставки.</p>
+  <div class="sup-grid">
+    <div class="sup-card">
+      <div class="sup-logo"><span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;">B. BRAUN</span></div>
+      <div class="sup-name">B. Braun Melsungen AG</div>
+      <div class="sup-badge">Германия</div>
+      <div class="sup-desc">Шовный материал, дренажи Blake, клипсы для лигирования. Основной поставщик по контрактам с НМИЦ Бакулева.</div>
+      <div class="sup-status">Прямой контракт</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-logo"><span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;">JOHNSON &amp; JOHNSON</span></div>
+      <div class="sup-name">Johnson &amp; Johnson</div>
+      <div class="sup-badge">США</div>
+      <div class="sup-desc">Расходные хирургические материалы. Поставки через официального дистрибьютора СистеМед.</div>
+      <div class="sup-status">Через СистеМед</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-logo" style="height:28px;display:flex;align-items:center;"><span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;">АРМАЛАЙН</span></div>
+      <div class="sup-name">ГК Медика / Армалайн</div>
+      <div class="sup-badge">Россия</div>
+      <div class="sup-desc">Шовный материал отечественного производства. Соответствие ГИСП. Основной поставщик по аукционам 2025.</div>
+      <div class="sup-status">Прямой контракт</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-logo" style="height:28px;display:flex;align-items:center;"><span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;">ЭЛЕМААР</span></div>
+      <div class="sup-name">Элемаар</div>
+      <div class="sup-badge">Россия</div>
+      <div class="sup-desc">Физиотерапевтическое и реабилитационное оборудование. Сервисный центр в Ставрополе.</div>
+      <div class="sup-status">Прямой контракт</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-logo" style="height:28px;display:flex;align-items:center;"><span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;">РЕПРОМЕД</span></div>
+      <div class="sup-name">Репромед</div>
+      <div class="sup-badge">Россия</div>
+      <div class="sup-desc">Электроды для кардиостимуляции. Поставки для кардиохирургических центров.</div>
+      <div class="sup-status">Прямой контракт</div>
+    </div>
+    <div class="sup-card">
+      <div class="sup-logo" style="height:28px;display:flex;align-items:center;"><span style="font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;">НаноМГ</span></div>
+      <div class="sup-name">НаноМГ</div>
+      <div class="sup-badge">Россия</div>
+      <div class="sup-desc">Гемостатики Willocell Fibril. Инновационные биорассасывающиеся материалы для остановки кровотечений.</div>
+      <div class="sup-status">На согласовании</div>
+    </div>
+  </div>
+</section>
+
+<!-- ДОКУМЕНТЫ -->
+<section class="documents" id="documents">
+  <div class="s-label">Документация</div>
+  <h2>Полный комплект<br>разрешительных документов</h2>
+  <p class="s-desc">Все необходимые документы для участия в государственных закупках.</p>
+  <div class="docs-grid">
+    <div class="doc-card">
+      <div class="doc-ic">РУ</div>
+      <div class="doc-title">Регистрационные удостоверения</div>
+      <div class="doc-desc">РУ Росздравнадзора на весь ассортимент поставляемых медицинских изделий</div>
+      <a href="#contact" class="doc-link">Запросить список →</a>
+    </div>
+    <div class="doc-card">
+      <div class="doc-ic">ЮЛ</div>
+      <div class="doc-title">Выписка ЕГРЮЛ</div>
+      <div class="doc-desc">ООО «Совершенство СК», ИНН 2635810410, Ставрополь. Актуальная выписка по запросу</div>
+      <a href="#contact" class="doc-link">Запросить →</a>
+    </div>
+    <div class="doc-card">
+      <div class="doc-ic">СТ</div>
+      <div class="doc-title">Декларации соответствия</div>
+      <div class="doc-desc">Декларации соответствия и сертификаты на всю поставляемую продукцию</div>
+      <a href="#contact" class="doc-link">Запросить →</a>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТ -->
+<section class="contact" id="contact">
+  <div class="s-label">Связаться с нами</div>
+  <h2>Запросить коммерческое<br>предложение</h2>
+  <div class="c-grid">
+    <div class="messenger-block">
+      <p class="messenger-desc">Напишите нам в удобный мессенджер — ответим в течение 2 часов в рабочее время. Опишите потребность или прикрепите ТЗ.</p>
+      <div class="messenger-btns">
+        <a href="https://wa.me/79682680069" target="_blank" class="msg-btn msg-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://t.me/+79682680069" target="_blank" class="msg-btn msg-tg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram
+        </a>
+        <a href="https://max.ru/+79682680069" target="_blank" class="msg-btn msg-max">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7h-2.25v1.5H16.5V12h-2.25v1.5H16.5V15h-2.25c0 .828-.672 1.5-1.5 1.5H9A1.5 1.5 0 017.5 15V9A1.5 1.5 0 019 7.5h4.5c.414 0 .788.168 1.06.44L15.56 9h.94zm-4.5 5.25V9.75H9v4.5h3z"/></svg>
+          Макс
+        </a>
+      </div>
+      <div class="messenger-tg-channel">
+        <div class="tg-channel-label">Наш Telegram-канал</div>
+        <a href="https://t.me/sovershenstvozdrav" target="_blank" class="tg-channel-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          @sovershenstvozdrav
+          <span class="tg-channel-tag">Новости отрасли · Скоро</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="c-block">
+        <div class="c-block-label">Телефон</div>
+        <a href="tel:+79682680069" class="c-block-value">+7 (968) 268-00-69</a>
+        <div class="c-block-sub">Пн–Пт, 9:00–18:00 МСК</div>
+      </div>
+      <div class="c-block">
+        <div class="c-block-label">Email</div>
+        <a href="/cdn-cgi/l/email-protection#b9c3d8daccc9d2d0f9cad6cfdccbcad1dcd7cacdcfd6c3ddcbd8cf97cbcc" class="c-block-value" style="font-size:14px;"><span class="__cf_email__" data-cfemail="d5afb4b6a0a5bebc95a6baa3b0a7a6bdb0bba6a1a3baafb1a7b4a3fba7a0">[email&#160;protected]</span></a>
+      </div>
+      <div class="c-block">
+        <div class="c-block-label">Реквизиты</div>
+        <div class="c-details">
+          <div class="c-det-row"><span class="c-det-k">Компания</span><span class="c-det-v">ООО «Совершенство СК»</span></div>
+          <div class="c-det-row"><span class="c-det-k">ИНН</span><span class="c-det-v">2635810410</span></div>
+          <div class="c-det-row"><span class="c-det-k">Директор</span><span class="c-det-v">Зырянова С.Н.</span></div>
+          <div class="c-det-row"><span class="c-det-k">Адрес</span><span class="c-det-v">г. Ставрополь</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-logo">
+        <div class="ft-icon"></div>
+        <span class="ft-name">Совершенство СК</span>
+      </div>
+      <p class="ft-desc">Аккредитованный поставщик медицинского оборудования и расходных материалов. Работаем по 44-ФЗ и 223-ФЗ.</p>
+    </div>
+    <div>
+      <div class="ft-col-title">Навигация</div>
+      <ul class="ft-links">
+        <li><a href="#goszakaz">44-ФЗ / 223-ФЗ</a></li>
+        <li><a href="#contracts">Контракты</a></li>
+        <li><a href="#directions">Оборудование</a></li>
+        <li><a href="#documents">Документы</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-title">Контакты</div>
+      <ul class="ft-links">
+        <li><a href="tel:+79682680069">+7 (968) 268-00-69</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#730912100603181a33001c051601001b161d0007051c09170112055d0106"><span class="__cf_email__" data-cfemail="dda7bcbea8adb6b49daeb2abb8afaeb5b8b3aea9abb2a7b9afbcabf3afa8">[email&#160;protected]</span></a></li>
+        <li><a href="#">г. Ставрополь</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-title">Документы</div>
+      <ul class="ft-links">
+        <li><a href="#documents">РУ Росздравнадзора</a></li>
+        <li><a href="#documents">Выписка ЕГРЮЛ</a></li>
+        <li><a href="#documents">Декларации</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 ООО «Совершенство СК»</div>
+    <div class="ft-inn">ИНН 2635810410 · Ставрополь</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggleMenu(){
+  const b=document.getElementById('burger');
+  const m=document.getElementById('mobMenu');
+  b.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('burger').classList.remove('open');
+  document.getElementById('mobMenu').classList.remove('open');
+  document.body.style.overflow='';
+}
+function setTab(el,type){
+  document.querySelectorAll('.form-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('formType').value=type;
+}
+function submitForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Отправляем...';
+  btn.disabled=true;
+  // Simulate success (in production connect to email service)
+  setTimeout(()=>{
+    document.getElementById('contactForm').reset();
+    document.getElementById('formSuccess').style.display='block';
+    btn.textContent='Отправить заявку';
+    btn.disabled=false;
+    setTimeout(()=>{d
